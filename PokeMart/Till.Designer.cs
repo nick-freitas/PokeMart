@@ -66,6 +66,7 @@
             this.textBoxInformationBox.Size = new System.Drawing.Size(730, 53);
             this.textBoxInformationBox.TabIndex = 2;
             this.textBoxInformationBox.Text = "Welcome To The PokeMart";
+            this.textBoxInformationBox.TextChanged += new System.EventHandler(this.textBoxInformationBox_TextChanged);
             // 
             // buttonPay
             // 

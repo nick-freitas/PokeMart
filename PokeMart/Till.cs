@@ -129,7 +129,34 @@ namespace PokeMart
 
         private void buttonPay_Click(object sender, EventArgs e)
         {
+            Payment payment = new Payment();
 
+            payment.PaymentMade += new Payment.PaymentMadeEvent(paymentMade);
+            payment.PaymentAmount = TransactionTotal;
+
+            payment.ShowDialog();
+        }
+
+        private void paymentMade(object sender, PaymentMadeEventArgs e)
+        {
+            Sale sale = new Sale();
+            sale.Date = DateTime.Now;
+
+            if (e.PaymentSuccess == false)
+            {
+                return;
+            }
+
+            foreach (Product product in products)
+            {
+                sale.SaleProducts.Add(new SaleProduct() { Product = product.Id });
+            }
+
+            dbContext.Sales.Add(sale);
+            dbContext.SaveChanges();
+
+            textBoxInformationBox.Text = String.Format("Paid {0:c}", TransactionTotal);
+            products.Clear();
         }
 
         private void Till_Load(object sender, EventArgs e)
@@ -144,6 +171,11 @@ namespace PokeMart
             products.Remove(product);
             TransactionTotal -= (Decimal)product.Price;
             textBoxInformationBox.Text = String.Format("{0}{1}", "Deleted ", GetFormattedProductNameAndPrice(product));
+        }
+
+        private void textBoxInformationBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
