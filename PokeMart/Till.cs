@@ -72,7 +72,7 @@ namespace PokeMart
                     button.Size = new Size(BUTTON_SIZE, BUTTON_SIZE);
                     button.Text = product.Name;
                     button.Tag = product;
-                    button.Font = new Font(FontFamily.GenericMonospace, 14, FontStyle.Bold);
+                    button.Font = new Font(FontFamily.GenericMonospace, 12, FontStyle.Bold);
                     button.TextAlign = ContentAlignment.BottomCenter;
                     if (product.Image != null)
                     {

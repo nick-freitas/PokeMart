@@ -30,6 +30,8 @@ namespace PokeMart
 
 				chart1.Series["Series1"].XValueMember = "ProductId";
 				chart1.Series["Series1"].YValueMembers = "TotalUnitsSold";
+				chart1.ChartAreas[0].AxisX.LabelStyle.Angle = -90;
+				chart1.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
 
 				chart1.Series["Series1"].Name = "Products";
 
